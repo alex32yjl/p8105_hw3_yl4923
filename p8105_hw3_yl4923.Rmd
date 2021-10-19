@@ -2,7 +2,6 @@
 title: "p8105_hw3_yl4923"
 output: github_document
 ---
-### Problem 0 
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -132,7 +131,8 @@ brfss_df %>%
     y = "average data value",
     caption = "BRFSS 'Excellent' response for overall health")
 ```
-Most of states appears a relatively constant average _data_value_ over the eight year period while state AK in red line is the one deviates the most in 2005 and 2009.
+Most of states appears a relatively constant average *data value* over the eight year period while state AK in red line is the one deviates the most in 2005 and 2009.
+
 
 2.3 Plot 2006 and 2010 health responses in NY 
 ```{r two-panel plot}
@@ -175,8 +175,22 @@ acc_df %>%
   summarize(total_act = sum(n_act)) %>%
   mutate(day = c("Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday", "Sunday")) %>%
   select(week, day, total_act) %>% 
-  knitr::kable(caption = "Total physical activity over the day",
+  knitr::kable(caption = "Total physical activity of each day",
                align = "lccrr")
 ```
 For the first 3 weeks, participants seems more active on Monday and midweek (Wednesday or Thursday). Fourth week has a noticeable drop in total activity for each day while the last week participants regained similar amount of activity and pattern as the first 3 weeks to be more active on Monday and Friday than other days of the week.
+
+3.3 24-hour activity time courses for each day
+```{r 24h activity}
+acc_df %>%
+  group_by(week, day) %>% 
+  ggplot(aes(x = activity, y = n_act, color = day)) + 
+  geom_line() +
+  labs(
+    title = "Daily Activity Over 5 Weeks",
+    x = "Day of Week",
+    y = "Total Activity",
+    caption = "Accelerometer Data")
+```
+Inspecting the activity over each day through 5 weeks, it seems like the participants are more fond of exercising during weekdays at the beginning of the study in which more weekdays(more organge yellow or pink then greens) have high physical activity peaks in the first third proportion of the graph. For the left weeks, there is a obvious gap in the mid of study while then the participants seem more into doing physical activity on weekend as more peaks showed on Saturday or Sunday (more greens) near the end of study.
 
