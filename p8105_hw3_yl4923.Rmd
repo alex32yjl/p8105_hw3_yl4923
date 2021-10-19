@@ -3,3 +3,20 @@ title: "p8105_hw3_yl4923"
 output: github_document
 ---
 ### Problem 0 
+
+### R setup
+```{r setup, include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+data("instacart")
+data("brfss_smart2010")
+
+library(readxl)
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 10,
+  fig.asp = .6,
+  out.width = "90%")
+
+theme_set(theme_bw() + theme(legend.position = "bottom"))
+```
