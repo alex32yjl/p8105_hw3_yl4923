@@ -134,3 +134,19 @@ brfss_df %>%
 ```
 Most of states appears a relatively constant average _data_value_ over the eight year period while state AK in red line is the one deviates the most in 2005 and 2009.
 
+2.3 Plot 2006 and 2010 health responses in NY 
+```{r two-panel plot}
+brfss_df %>% 
+  filter(state == "NY", year == c("2006", "2010")) %>%
+  select(year, location, response, data_value) %>% 
+  ggplot(aes(x = response, y = data_value, color = location)) + 
+  geom_point() + 
+  facet_grid(. ~ year) +
+  labs(
+    title = "Overall Health Response in NY",
+    x = "Health Response",
+    y = "Distribution of Data Value",
+    caption = "BRFSS IN NY")
+```
+The response to overall health topic seems getting better compared 2006 to 2010 in New York State since "Poor" and "Fair" lessen while "Good" and "Very Good" increases. The distribution for answer of "Excellent" is about the same.  
+
