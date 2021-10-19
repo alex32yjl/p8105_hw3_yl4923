@@ -4,7 +4,6 @@ output: github_document
 ---
 ### Problem 0 
 
-### R setup
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(p8105.datasets)
@@ -20,3 +19,8 @@ knitr::opts_chunk$set(
 
 theme_set(theme_bw() + theme(legend.position = "bottom"))
 ```
+
+## Problem 1
+1.1 data exploration
+There are *`r nrow(instacart)`* rows and *`r ncol(instacart)`* columns in the _instacart_ data set. The key variables like *order_id*, *product_id* or *user_id* helps both customers and stores to identify products bought. For instant, in row 1, *user 112108* ordered *Bulgarian Yogurt (product 49302)* which was the first to be added to the cart and was also reordered by this user. This product was placed at *yogurt aisle (aisle_id 120)* in the *dairy & eggs department (department_id 16)*.The order was placed on Thursday between 10-11 am, 9 days after the user's last purchase. 
+
