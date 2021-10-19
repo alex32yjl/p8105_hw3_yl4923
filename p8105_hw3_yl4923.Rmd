@@ -167,3 +167,16 @@ acc_df = read_csv("data/accel_data.csv") %>%
 ```
 The resulting data set includes, _week_, _day_id_, _day_ as well as _activity_ and _n_act_ derived from original _activity_1_ to _activity_1440_. Also, a new variable _day_class_ classified a _day_ into weekday or weekend is added. We now have *`r nrow(acc_df)`* observations and *`r ncol(acc_df)`* variables for this five weeks of accelerometer data. 
 
+
+3.2 total activity table for each day
+```{r daily activity table}
+acc_df %>%
+  group_by(week, day) %>% 
+  summarize(total_act = sum(n_act)) %>%
+  mutate(day = c("Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday", "Sunday")) %>%
+  select(week, day, total_act) %>% 
+  knitr::kable(caption = "Total physical activity over the day",
+               align = "lccrr")
+```
+For the first 3 weeks, participants seems more active on Monday and midweek (Wednesday or Thursday). Fourth week has a noticeable drop in total activity for each day while the last week participants regained similar amount of activity and pattern as the first 3 weeks to be more active on Monday and Friday than other days of the week.
+
