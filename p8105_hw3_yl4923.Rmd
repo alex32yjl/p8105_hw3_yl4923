@@ -24,3 +24,12 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 1.1 data exploration
 There are *`r nrow(instacart)`* rows and *`r ncol(instacart)`* columns in the _instacart_ data set. The key variables like *order_id*, *product_id* or *user_id* helps both customers and stores to identify products bought. For instant, in row 1, *user 112108* ordered *Bulgarian Yogurt (product 49302)* which was the first to be added to the cart and was also reordered by this user. This product was placed at *yogurt aisle (aisle_id 120)* in the *dairy & eggs department (department_id 16)*.The order was placed on Thursday between 10-11 am, 9 days after the user's last purchase. 
 
+1.2 aisles
+```{r count aisle}
+instacart %>% 
+  group_by(aisle, aisle_id) %>%
+  summarize(n = n()) %>%
+  arrange(desc(n)) %>%
+  tbl_df()
+```
+There are *134* different aisles and most items ordered with a count of 150609 is from aisle *fresh vegetables* with id _83_. 
