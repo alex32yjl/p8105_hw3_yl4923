@@ -64,3 +64,20 @@ instacart %>%
 ```
 The 3 most popular items are *Light Brown Sugar*, *Organic Grain Free Chicken & Vegetable Dog Food* and *Organic Baby Spinach* with 156, 14 and 3324 times of order respectively.
 
+1.5 a table showing the mean hour of the day at which Pink Lady Apples and Coffee Ice Cream are ordered on each day of the week
+```{r table 2}
+instacart %>%
+  filter(product_name %in% c("Pink Lady Apples", "Coffee Ice Cream")) %>%
+  select(product_name, order_dow, order_hour_of_day) %>% 
+  group_by(product_name, order_dow) %>% 
+  summarize(mean_hour = mean(order_hour_of_day)) %>% 
+  mutate(order_dow_char = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")) %>%
+  select(-order_dow) %>% 
+  pivot_wider(
+    names_from = "order_dow_char", 
+    values_from = "mean_hour") %>% 
+  knitr::kable(digits = 2,
+               caption = "Mean hour of each day at which Pink Lady Apples and Coffee Ice Cream are ordered", 
+               align = "lccrr")
+```
+Pink Lady Apple is mostly ordered around noon on each day of the week, ranging from 11.6 to 13.9 while Coffee Ice Cream is more likely to be ordered in the afternoon, ranging from 12.4 to 15.4 with one exception in the morning at 10.3 by average on Friday.
