@@ -53,4 +53,14 @@ instacart %>%
 
   The histogram shows the number of products in aisles with more than 10k orders as well as colored them which department falls in. Thus, we can tell these aisles by more general categories, which can be easier to find than through their long names.  
   
+1.4 a table showing the three most popular items in each of the aisles “baking ingredients”, “dog food care”, and “packaged vegetables fruits”
+```{r table 1}
+instacart %>%
+  filter(aisle == c("baking ingredients", "dog food care", "packaged vegetables fruits")) %>%
+  group_by(aisle, product_name) %>%
+  summarize(order_number = n()) %>% 
+  filter(order_number == max(order_number)) %>%
+  knitr::kable(caption = "Most popular items of the aisles “baking ingredients”, “dog food care”, and “packaged vegetables fruits” ", align = "lccrr")
+```
+The 3 most popular items are *Light Brown Sugar*, *Organic Grain Free Chicken & Vegetable Dog Food* and *Organic Baby Spinach* with 156, 14 and 3324 times of order respectively.
 
