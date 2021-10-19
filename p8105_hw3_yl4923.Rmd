@@ -1,6 +1,6 @@
 ---
 title: "p8105_hw3_yl4923"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
