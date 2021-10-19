@@ -81,3 +81,21 @@ instacart %>%
                align = "lccrr")
 ```
 Pink Lady Apple is mostly ordered around noon on each day of the week, ranging from 11.6 to 13.9 while Coffee Ice Cream is more likely to be ordered in the afternoon, ranging from 12.4 to 15.4 with one exception in the morning at 10.3 by average on Friday.
+
+### Problem 2
+2.1 Data cleaning 
+```{r data cleaning}
+brfss_df =
+  brfss_smart2010 %>%
+  janitor::clean_names() %>%
+  filter(topic == "Overall Health") %>% 
+  mutate(response = fct_relevel(response, c("Poor", "Fair", "Good", "Very good", "Excellent"))) %>% 
+  select(year,
+         state = locationabbr,
+         location = locationdesc,
+         response,
+         sample_size,
+         data_value)
+```
+
+
