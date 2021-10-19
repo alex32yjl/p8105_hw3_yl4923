@@ -98,4 +98,22 @@ brfss_df =
          data_value)
 ```
 
+2.2 States observed at 7 or more locations in 2002 and 2010
+```{r}
+state_2002 = 
+  brfss_df %>% 
+  filter(year == 2002) %>% 
+  distinct(state, location) %>%
+  count(state) %>%
+  filter(n >= 7) %>%
+  tbl_df
 
+state_2010 = 
+  brfss_df %>% 
+  filter(year == 2010) %>% 
+  distinct(state, location) %>%
+  count(state) %>%
+  filter(n >= 7) %>%
+  tbl_df
+```
+In 2002,*`r pull(state_2002, state)`* were observed at 7 or more locations; in 2010, *`r pull(state_2010, state)`* were observed at 7 or more locations.
