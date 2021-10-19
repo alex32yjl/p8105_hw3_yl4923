@@ -117,3 +117,20 @@ state_2010 =
   tbl_df
 ```
 In 2002,*`r pull(state_2002, state)`* were observed at 7 or more locations; in 2010, *`r pull(state_2010, state)`* were observed at 7 or more locations.
+
+2.2 Plot 'Excellent' response
+```{r}
+brfss_df %>% 
+  filter(response == "Excellent") %>% 
+  select(year, state, data_value) %>% 
+  group_by(year, state) %>% 
+  summarize(ave_data = mean(data_value)) %>%
+  ggplot(aes(x = year, y = ave_data, color = state)) + 
+  geom_line() +
+  labs(
+    title = "Spaghetti plot of average values across locations within a state from 2002 to 2010",
+    y = "average data value",
+    caption = "BRFSS 'Excellent' response for overall health")
+```
+Most of states appears a relatively constant average _data_value_ over the eight year period while state AK in red line is the one deviates the most in 2005 and 2009.
+
